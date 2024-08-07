@@ -1,0 +1,1 @@
+// file ini akan dibutuhkan untuk hanya pengelolaan kontak saja

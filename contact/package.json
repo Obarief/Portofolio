@@ -1,0 +1,14 @@
+{
+  "name": "contact",
+  "version": "1.0.0",
+  "description": "membuat program kontak yang disimpan ke json",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Oktavari",
+  "license": "ISC",
+  "dependencies": {
+    "validator": "^13.12.0"
+  }
+}
