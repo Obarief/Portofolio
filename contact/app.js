@@ -22,10 +22,10 @@
 // // yargs.command('cmd','deskripsi','function/object(builder)','handler')
 
 const yargs = require('yargs')
-const { simpanKontak } = require('./contacts')
+const { simpanKontak, listContact, detailContact, deleteContact } = require('./contacts')
 yargs.command({
     command: 'add',
-    describe: '*Menambahkan kontak baru*',
+    describe: ' = Menambah Kontak',
     builder: {
         nama: {
             describe: 'Masukkan nama',
@@ -48,8 +48,51 @@ yargs.command({
         simpanKontak(argv.nama, argv.email, argv.noHP)
     }
 })
+.demandCommand() // agar ketika hanya mengetik node app mendapat attention/arahan untuk panduan penulisan
 
-.parse();
+// menampilkan semua nama dan nomor telepon kontak
+yargs.command({
+    command: 'list',
+    describe: ' = Menampilkan list nama & no HP kontak',
+    handler() {
+        listContact()
+    }
+})
+
+// menampilkan detail
+yargs.command({
+    command: 'detail',
+    describe: ' = Menampilkan detail kontak berdasarkan nama',
+    builder: {
+        nama: {
+            describe: 'Masukkan nama',
+            demandOption: true,
+            type: 'string'
+        },
+    },
+    handler(argv) {
+        detailContact(argv.nama)
+    }
+})
+
+
+// menghapus kontak
+yargs.command({
+    command: 'delete',
+    describe: ' = Menghapus Kontak',
+    builder: {
+        nama: {
+            describe: 'Masukkan nama',
+            demandOption: true,
+            type: 'string'
+        },
+    },
+    handler(argv) {
+        deleteContact(argv.nama)
+    }
+})
+
+.parse()
 
 
 

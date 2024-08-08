@@ -61,15 +61,27 @@ if(!fs.existsSync(fileJson)){
 //     })
 // }
 
+const loadContact = () => {
+    const file = fs.readFileSync('data/contacts.json', 'utf-8');
+
+    // merubah data dari string ke json
+    const contacts = JSON.parse(file); // JSON (javascript Object Notation)
+
+    return contacts;
+}
+
 
 const simpanKontak = (nama, email, noHP) => {
 
     // membaca data
     const contact = {nama, email, noHP}; // dibuat menjadi object
-    const file = fs.readFileSync('data/contacts.json', 'utf-8');
+    
+    // const file = fs.readFileSync('data/contacts.json', 'utf-8');
 
-    // merubah data dari string ke json
-    const contacts = JSON.parse(file); // JSON (javascript Object Notation)
+    // // merubah data dari string ke json
+    // const contacts = JSON.parse(file); // JSON (javascript Object Notation)
+
+    const contacts = loadContact();
 
     // mengecek duplikat nama
     const duplikat = contacts.find((contact) => contact.nama === nama ); // contact.nama = file yg sudah ada | nama = baru di inputkan
@@ -102,4 +114,54 @@ const simpanKontak = (nama, email, noHP) => {
     // rl.close();
 }
 
-module.exports = { simpanKontak } // agar file ini dapat di export keluar (yang dipilih functionnya) sebenarnya bisa variabel, function, object, class, array
+const listContact = () => {
+    const contacts = loadContact();
+    console.log(chalk.cyan.inverse.bold('No.    Nama          NoHP           '))
+    contacts.forEach((contact, i) => {
+        console.log(`${i + 1}. ${contact.nama} - ${contact.noHP}`);
+    });
+}
+
+const detailContact = (nama) => {
+    const contacts = loadContact(); // mengambil daftar data json
+
+    const contact = contacts.find((contact) => contact.nama.toLowerCase() === nama.toLowerCase()); // melakukan pencarian berdasarkan nama yang telah terdaftar dengan nama yang baru di inputkan (menggunakan lowercase agar pencarian mudah)
+
+    if(!contact){// bila nama tidak sama/tidak ditemukan maka ....
+        console.log(chalk.red.bgBlack(`${nama} Tidak Terdaftar`));
+        return false;
+    }
+
+    // bila nama sama/terdaftar maka.....
+    console.log(chalk.cyan.inverse.bold('Kontak Yang Anda Inginkan'));
+    console.log(contact.nama);
+    console.log(contact.noHP);
+    
+    // karena email tidak wajib, maka diberi kondisi bila ada maka tampilkan
+    if(contact.email){
+        console.log(contact.email);
+    }
+}
+
+
+const deleteContact = (nama) => {
+    // array lama
+    const contacts = loadContact(); // mengambil daftar data json
+
+    // array baru
+    const newContacts = contacts.filter( 
+        // tidak bisa pakai find alasan = (1. mengganti nilai yg dihapus dengan undefined) (2. find akan berhenti pencariannya ketika sudah menemukan)
+        // algoritmanya adalah membuat array baru yg telah diperbarui lalu me-load ulang semua data jsonnya (agar tidak ada undefined)
+        (contact) => contact.nama.toLowerCase() !== nama.toLowerCase()
+    )
+
+    if(contacts.length === newContacts.length){// bila panjang array lama dengan array baru sama maka
+        console.log(chalk.red.bgBlack(`${nama} Tidak Terdaftar`));
+        return false;
+    }
+
+    fs.writeFileSync('data/contacts.json', JSON.stringify(newContacts, null, 2));
+    console.log(chalk.green.inverse.bold(`Data dari kontak yang bernama ${nama} sudah berhasil terhapus`))
+}
+
+module.exports = { simpanKontak, listContact, detailContact, deleteContact } // agar file ini dapat di export keluar (yang dipilih functionnya) sebenarnya bisa variabel, function, object, class, array
