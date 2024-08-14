@@ -1,0 +1,28 @@
+{
+    "menu": [
+        {
+            "ID": 1,
+            "menu": "WAFU CURRY BEEF RAMEN + CHIKUWA + OCHA",
+            "harga": 65000,
+            "poster": "img/1.png"
+        },
+        {
+            "ID": 2,
+            "menu": "WAFU SHOYU RAMEN + CHIKUWA + OCHA",
+            "harga": 56000,
+            "poster": "img/2.png"
+        },
+        {
+            "ID": 3,
+            "menu": "SPICY RAMEN REGULER + CHIKUWA + OCHA",
+            "harga": 58000,
+            "poster": "img/3.png"
+        },
+        {
+            "ID": 4,
+            "menu": "TORI PAITAN RAMEN REGULER + CHIKUWA + OCHA",
+            "harga": 56000,
+            "poster": "img/4.png"
+        }
+    ]
+}
