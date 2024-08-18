@@ -1,0 +1,108 @@
+*yang diperlukan adalah
+-nodejs
+-expressjs
+-nodemon = realtime change
+
+*struktur template 
+
+const express = require('express');
+const app = express();
+
+// server listen
+app.listen(4000, () => {
+    console.log('Server Telah Menyala di port 4000')
+})
+
+*pernjelasan =
+-inisialisasi express sebagai espress
+-inisialisasi app sebagai express
+-method use() adalah method general (get, post, put, delete)
+-method get() dan post() jika ingin spesifik
+-listen(port, ()) = digunakan untuk menjalankan server pada port berapa
+
+*http method kesepakatan (REST API) =
+get = mendapatkan data
+post = membuat data baru
+put = update data (replace)
+patch = update data (spesifik)
+
+
+*response
+dapat mengirim text, html, json, dan xml = biasanya json untuk saat ini, dahulu mengirim xml
+
+*refactoring structure folders 
+src =
+    *controllers/: Berisi logika untuk menangani request dan response.
+    models/: Berisi definisi skema atau model data yang berinteraksi dengan database.
+    *routes/: Berisi definisi endpoint dan penghubung ke controller.
+    middlewares/: Berisi middleware yang digunakan untuk memproses request sebelum sampai ke controller.
+    *services/: Berisi logika bisnis atau layanan yang digunakan oleh controller.
+    config/: Berisi konfigurasi aplikasi, seperti pengaturan database.
+    *tests/: Berisi skrip pengujian untuk aplikasi.
+
+*middleware =
+app.use(middlewareLogRequest); = melihat pada path apa yang di tuju
+
+app.use(express.json()) = setiap data yang dikirim dari CRUD akan di parsing menjadi json
+
+app.use(express.static('public')) = semua file di dalam direktori tersebut dapat diakses langsung oleh klien melalui URL yang sesuai, tanpa memerlukan penanganan khusus dari server. (tanpa penanganan dinamis) static = tidak berubah, dinamis = berubah ubah
+
+?penempatan middleware dalam REST API
+{
+    middleware = digunakan untuk keseluruhan path
+
+    general = path yang akan selalu dan bisa digunakan
+
+    middleware = digunakan untuk path khusus
+}
+
+?method post untuk upload file
+{
+    app.post('/upload', upload.single('photo'), (req, res))
+
+    -pada method post dengan middleware dan akan diteruskan ke req dan res
+    -upload.single('photo') adalah command dari npm(multer) (single artinya hanya upload 1 file, karena terdapat command array atau banyak)
+}
+
+?penentuan besaran upload file menggunakan npm(multer)
+{
+    const upload = multer({
+    
+    storage: storage,
+    limits: 3 * 1000 * 1000 // 3 MB
+})
+    penulisan limmit dari gigabyte, megabyte, kilobyte, byte
+}
+
+?error handling pasti memiliki 4 parameter, jika ada path yang tidak ada maka akan di kembalikan oleh error ini
+{
+    app.use((error, req, res, next) => {
+    res.json({
+        message: res.message
+    })
+})
+}
+
+*penjelasan url =
+    req.params: Digunakan untuk menangkap data yang spesifik dari URL, misalnya, ID sumber daya.
+    req.query: Digunakan untuk menangkap data opsional atau filter dari URL query string.
+    req.body: Digunakan untuk menangkap data yang dikirim oleh client dalam body request, sering kali pada permintaan POST atau PUT.
+
+
+*HTTP STATUS CODE =
+---SUCCESS---
+-200 ok (GET, PATCH) = data didapat
+-2001 created (POST, PUT) = data terbuat
+---CLIENT ERROR---
+-400 bad request = salah menginput data
+-401 unouthorized = belum ter autorisasi
+-403 forbidden = tidak diizinkan (user dan administrator)
+-404 not found = API salah
+-405 method not allowed = menggunakan method yang tidak di inisialisasi
+---SERVER ERROR---
+-500 internal server error = server yang error
+
+**PENTING
+-mendapatkan data ke database itu bersifat asynchronous jadi gunakan async () => { await }
+-sebaiknya menggunakan try catch disaat pengambilan data ke database
+-data penting masukkan ke dotenv = port, database, token, dll

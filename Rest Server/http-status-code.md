@@ -1,0 +1,12 @@
+*HTTP STATUS CODE =
+---SUCCESS---
+-200 ok (GET, PATCH) = data didapat
+-201 created (POST, PUT) = data terbuat
+---CLIENT ERROR---
+-400 bad request = salah menginput data
+-401 unouthorized = belum ter autorisasi
+-403 forbidden = tidak diizinkan (user dan administrator)
+-404 not found = API salah
+-405 method not allowed = menggunakan method yang tidak di inisialisasi
+---SERVER ERROR---
+-500 internal server error = server yang error
