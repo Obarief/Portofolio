@@ -15,6 +15,7 @@
 
 
     <script type="text/babel">
+
         const container = document.getElementById('root')
         const root = ReactDOM.createRoot(container)
         
@@ -23,42 +24,47 @@
         function Halaman() {
             const [number, cNumber] = React.useState(0)
 
-            function positifClick() {
+            
+
+            function PositifClick() {
                 cNumber(number + 1)
+                
             }
     
-            function negatifClick() {
+            function NegatifClick() {
                 cNumber(number - 1)
+                
             }
     
-            function resetClick() {
+            function ResetClick() {
                 cNumber(0)
+            }
+
+            function Tombol({title}){
+                if(number == 10 || number < 0){
+                    return (<button onClick={title === "-" ? NegatifClick : PositifClick} disabled>{title ? title : ""}</button>)
+                } else {
+                    return (<button onClick={title === "-" ? NegatifClick : PositifClick}>{title ? title : ""}</button>)
+                }
+            }
+
+            function Reset({title}) {
+                if(number == 10 || number < 0){
+                    return (<button onClick={ResetClick} disabled>Reset</button>)
+                } else {
+                    return (<button onClick={ResetClick}>Reset</button>)
+                }
             }
 
         
 
             return (
                 <>
-
-                    <span>
-                    
-                    
-                        <button onClick={negatifClick}>- </button> 
-                        
-                        <span>
-                            {number} 
-                        </span>
-    
-                        <button onClick={positifClick}> +</button>
-                    </span>
+                    <Tombol title="-" />
+                    <span >{number === 10 || number < 0 ? "done!" : number}</span>
+                    <Tombol title="+" />
                     <br />
-                    <br />
-                    <div>
-                        <button onClick={resetClick}>Reset!</button>
-                    </div>
-
-                        
-                    
+                    <Reset />
                     
                 </>
             )
