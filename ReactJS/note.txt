@@ -1,0 +1,201 @@
+https://id.react.dev/learn
+
+apa itu react ?
+- library frontend javascript yang tidak mengatur(banyak fungsi yang terserah dipakai untuk apa saja)
+
+////
+
+*html -> dom tree -> UI
+
+*dom manipulation = merubah UI tanpa mengubah HTMLnya namun menggunakan javascript
+
+*view soruce page  -  inspect element
+
+*html = konten awal
+*dom = konten terbaru(yg telah diperbarui)
+
+*melakukannya dengan vanilla js memang bagus namun ribet dan sangat panjang prosesnya
+
+*imperative programming = menulis langkah demi langkah bagaimana sesuatu harus dilakukan (tolong bikinin nasi goreng dengan api kecil lalu bawang putih masukkan nasi dan minyak dll)
+
+*declarative programming = menulis apa yang akan dihasilkan(pesen nasi goreng satu!)
+
+*ReactJS = UI library yang declarative
+
+*mengembalikan 1 element dengan membungkus semua elemen dengan =
+<>
+</>
+
+atau
+
+< />
+
+gunakan camelCase pada jsx
+
+template penggunaan reactjs dengan CDN :
+{
+
+<header>
+     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<body>
+    <script type="text/babel (atau jsx)">
+
+}
+
+? vanilla javascript
+{
+
+    // seleksi elemenHTML untuk meletakkan elemen baru
+    const app = document.getElementById('app')
+
+    // buat elemen baru
+    const heading = document.createElement('h1')
+
+    // buat isi dari elemen baru
+    const headingText = document.createTextNode('Halo semuanya! 💥')
+
+    // masukkan isi elemen ke elemen baru
+    heading.appendChild(headingText)
+
+    // masukkan elemen baru yang sudah ada isi ke elemenHTML
+    app.appendChild(heading)
+
+}
+
+
+***3 hal penting untuk menguasai ReactJ
+1. components = memecah beberapa elemen UI menjadi lebih kecil (agar kode dapat dipakai kembali (reuseble), (dinamis))(contoh= membuat komponen card terdapat komponen text, image, dll) = function dengan huruf besar (didalamnya jsx) = saat dipanggil dengan seperti html
+
+? Components
+{
+
+    <div id="root"></div>
+    
+    <script type="text/babel">
+
+        function Header()  {
+            return (<h1>belajar ReactJS</h1>);
+        }
+
+        const container = document.getElementById('root')
+        const root = ReactDOM.createRoot(container)
+        root.render(<Header/>)
+    </script>
+
+}
+
+? Nested Components
+{
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        function Header()  {
+            return (<h1>belajar ReactJS</h1>);
+        }
+
+        function Praghraf() {
+            return (
+                <div>
+                    <Header/>
+                </div>
+            )
+        }
+
+        const container = document.getElementById('root')
+        const root = ReactDOM.createRoot(container)
+        root.render(<Praghraf/>)
+    </script>
+
+}
+
+
+2. props = membuat elemen yang berulang namun dengan isi yang berbeda
+contoh:
+
+? berikan parameter props(dapat diganti (opsional)), lalu panggil layaknya template literals dan pada pemakaian component header berikan author(dapat diganti (opsional)) 
+{
+
+     function Header(props)  {
+            return (<h1>belajar ReactJS bersama {props.author}</h1>);
+        }
+
+        function Praghraf() {
+            return (
+                <div>
+                    <Header author="okta"/>
+                    <Header author="bibin"/>
+                </div>
+            )
+        }
+
+}
+
+? Refactoring props dengan destructuring pada parameter dan ternary operator, pada parameter tidak perlu memanggil objectnya namun langsung panggil properti dari object tersebut
+- jika author tidak ada namanya maka "WPU" menjadi nilai default
+{
+
+    function Header({author})  {
+            return (<h1>belajar ReactJS bersama {author ? author : "WPU"}</h1>);
+        }
+
+        function Praghraf() {
+            return (
+                <div>
+                    <Header author="okta"/>
+                    <Header />
+                </div>
+            )
+        }
+
+}
+
+? looping array dengan map pada reactjs
+{
+
+     function Praghraf() {
+            const techs = ['angularJS', 'vueJS', 'reactJS']
+            return (
+                <div>
+                    <Header author="okta"/>
+                    <Header />
+                    <ul>
+                        { // fungsinya untuk menyisipkan jsx pada return reactjs (html)
+                            techs.map((tech) => (
+                                <li key={tech}>{tech}</li>
+                            ))
+                        } // techs adalah kumpulan array dan dipecah menjadi array baru dengan nama tech yang akan di looping sesuai banyaknya array, key dibutuhkan agar reactjs dapat mengenali perbedaan index/pembeda pada elemen yang sama
+                    </ul>
+                </div>
+            )
+        }
+
+}
+
+
+3. 
+-state = data yang berubah seiring waktu(ketika butuh)
+-hook = fungsi khusus dalam react untuk memungkinkan penggunaan state dan fitur lain di reactjs dalam komponen fungsional
+
+?contoh pembuatan like yang update menggunakan button 
+- useState adalah hook dan mengembalikan 2 nilai yaitu likes dan setLikes
+- destructuring digunakan untuk memisahkan nilai likes dan setLikes
+- likes = jumlah likes
+- setLikes = untuk menampung nilai likes terbaru dengan bantuan fungsi
+- pada pemanggilan onClick memanggil fungsi bukan hasil dari fungsi (standar default untuk penggunaan reactjs pada onclick agar saat di render tidak langsung dijalankan fungsinya namun tuggu saat onClicknya dijalankan)
+{
+
+        const [likes, setLikes] = React.useState(0);
+
+            function handleClick(){
+                setLikes(likes + 1)
+            }
+
+            <button onClick={handleClick}>Like ({likes})</button>
+
+}
