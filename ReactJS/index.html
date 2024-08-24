@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+
+    <script type="text/babel">
+        const container = document.getElementById('root')
+        const root = ReactDOM.createRoot(container)
+        
+
+        
+        function Halaman() {
+            const [number, cNumber] = React.useState(0)
+
+            function positifClick() {
+                cNumber(number + 1)
+            }
+    
+            function negatifClick() {
+                cNumber(number - 1)
+            }
+    
+            function resetClick() {
+                cNumber(0)
+            }
+
+        
+
+            return (
+                <>
+
+                    <span>
+                    
+                    
+                        <button onClick={negatifClick}>- </button> 
+                        
+                        <span>
+                            {number} 
+                        </span>
+    
+                        <button onClick={positifClick}> +</button>
+                    </span>
+                    <br />
+                    <br />
+                    <div>
+                        <button onClick={resetClick}>Reset!</button>
+                    </div>
+
+                        
+                    
+                    
+                </>
+            )
+        }
+
+
+        
+        root.render(<Halaman/>)
+    </script>
+</body>
+</html>
