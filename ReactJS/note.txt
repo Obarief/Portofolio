@@ -5,6 +5,8 @@ apa itu react ?
 
 ////
 
+*saat ingin mengganti ui pada enduser website tidak akan refresh namun me-render komponennya (kelebihan reactjs)
+
 *html -> dom tree -> UI
 
 *dom manipulation = merubah UI tanpa mengubah HTMLnya namun menggunakan javascript
