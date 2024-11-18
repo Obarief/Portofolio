@@ -1,0 +1,75 @@
+    BOM:
+        -alert = mengembalikan undefined = hanya string
+        -prompt = mengembalikan apapun yg diisi = bisa di terjemahkan ke number dll
+            -let pesanInput = Number(prompt('Masukkan angka sesukamu...')); = convert number
+            -let name = prompt('Silakan masukkan nama Anda!', 'John Doe'); = memberikan nilai default
+        -console = menampilkan sesuatu ke console browser untuk debugging
+            -console.log('Ini adalah console log');
+            -console.info('Ini adalah console info');
+            -console.warn('Ini adalah console warn');
+            -console.error('Ini adalah console error');
+
+    DOM:
+        -document = jika dalam BOM terdapat window untuk scope globalnya, maka dalam DOM terdapat document
+        -const head = document.head -> head = akan mengembalikan tag head
+        -const gambar = document.getElementById("gambar_rubik") -> gambar = akan mengembalikan tag img berdasarkan id pada tag htmlnya
+            -getElementByName() = dari element name pada form input biasanya
+            -getElementByClassName() = dari nama kelas tag htmlnya
+            -getElementByTagName() = dari tag htmlnya
+            -querySelector() = mengembalikan kelas yang *pertama* menerapkannya
+            -querySelectorAll() = menampilkan banyak kelas yang menerapkannya
+                - bisa juga mencari dengan looping = for(let item of buttons){console.log(item)} = akan mengembalikan nilai nodelist (mirip array) ke console sesuai parameter
+            
+        -Menambah dan memasukkan isi dari tag html (belum di sematkan ke dokumen htmlnya) =
+            -const newElement = document.createElement('p') = menambah element p
+            -newElement.innerText = 'selamat datang di indomerit' = menambahkan teks didalam tag p
+                *PENTING* = innerText = menambah text || innextHTML = memasukkan tag html ke dokumen
+            -const gambar = document.createElement('img'); = membuat tag img
+            -gambar.setAttribute('src', 'https://picsum.photos/200/300'); = src sebagai atributenya dan https.blablabla sebagai valuenya
+
+        -Merubah tag htmlnya (*ingat* dalam console bersifat sementara)
+            -const gambar = document.getElementById('gambar');
+            -gambar.setAttribute('width', '300') = merubah lebarnya menjadi 300
+
+            -const text = document.getElementById('p');
+            -text.innerHTML = "<i>halo halo bandung</i>" = akan merubah isi text menjadi italic dan teksnya menjadi 'halo halo bandung'
+
+        -Menambah tag (biaanya didalam sebuah list)
+            -const newElement = document.createElement('li');
+            -newElement.innerText = 'selamat menik mati';
+            -const daftar = document.getElementById('daftar');
+            -daftar.appendChild(newElement); = memasukkan pada akhir list
+            
+            -const awal = document.getElementById('awal') = awal dikiaskan sebagai id pertama dalam list
+            -daftar.insertBefore(newElement, awal) = akan berada diatas dari yang awal sebelumnya (element, item awal)
+            
+    Event: 
+        -<button onClick="alert('Halo! Apa Kabar')"> Tekan Aku </button> = tag button yang memiliki atribut onClick dengan mengembalikan alert dan mengembalikan teks 'halo apakabar' dan button memiliki teks 'tekan aku'
+
+        -window event:
+            -onload = ketika halaman web selesai diunduh
+            -onpageshow = jika halaman web dikunjungi kembali
+            -onresize = jika window browser di resize
+
+        -form event:
+            -onreset = mengosongkan form jika menekan tombol reset
+            -onsubmit = submit akan terjadi bila tombol submit di tekan
+            -oninput = memberikan input melalui field
+            -onchange = ketika sudah menginput di field bisa juga untuk dropdown
+            -onfocus = jika ada elemen yg dipilih untuk proses input
+            -onblur = jika ada elemen yg tidak dipilih untuk proses input
+
+        -keyboard event:
+            -onkeydown = jika tombol keyboard di tekan
+            -onkeypress = jika tombol masih di tekan dan tidak pengaruh pada (CTRL, SHIFT, ALT, ESC, BACKSPACE)
+            -onkeyup = ketika tomvol keyboard di lepas
+
+        -clipboard event:
+            -oncopy = ketika melakukan copy
+            -oncut = ketika melakukan cut
+            -onpaste = ketika melakukan paste
+
+        -mouse event:
+            -onclick = ketikan melakukan klik dengan cursor
+            -ondblclick = ketikan menekan klik sebagai dua kali berturut turut
+            -onmouseover = ketika cursor berada diatas sesuatu

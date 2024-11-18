@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .contents {
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          border: 2px solid black;
+          padding: 15px;
+        }
+        
+        #generateButton {
+          margin-top: 5px;
+          margin-bottom: 15px;;
+        }
+      </style>
+</head>
+<body>
+    <div class="contents" align="center" hidden>
+        <button id="incrementButton">Tekan Aku :)</button>
+        <h3>Kamu sudah menekan tombol di atas sebanyak <span id="count">0</span></h3>
+      </div>
+       
+      <script>
+        function welcome() {
+            alert('Sim salabim muncullah elemen-elemen HTML!');
+            const contents = document.querySelector('.contents');
+            contents.removeAttribute('hidden');
+        }
+        
+
+        function increment() {
+            document.getElementById('count').innerText++;
+            // mendefinisikan jika sampai 7 maka akan muncul hadiah
+            if (document.getElementById('count').innerText == 7) {
+                const hiddenMassage = document.createElement('h4');
+                hiddenMassage.innerText = 'Selamat anda menemukan hadiah tersembunyi :>';
+                
+                const image = document.createElement('img');
+                image.setAttribute(
+                    'src',
+                    'https://raw.githubusercontent.com/dicodingacademy/a315-web-pemula-labs/shared-files/catto.jpg',
+
+                );
+                // mengeluarkan konten tersembunyi
+                const contents = document.querySelector('.contents');
+                contents.appendChild(hiddenMassage);
+                contents.appendChild(image);
+                }
+            }      
+
+            window.addEventListener('load', welcome);
+            document.getElementById('incrementButton').addEventListener('click', increment);
+            </script>
+</body>
+</html>
