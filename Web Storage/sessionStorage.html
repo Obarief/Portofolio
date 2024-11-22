@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nyoba session storage</title>
+</head>
+<body>
+    <h1>pejet tombol tambah terlebih dahulu lalu reset ceunah</h1>
+
+    <button id="tambah">tambah</button>
+    <button id="hapus">hapus</button>
+
+    <h3>kamu sudah mengeklik sebanyak <span id="hitungan">0</span></h3>
+
+    <script>
+        const tambah = document.getElementById('tambah');
+        const hapus = document.getElementById('hapus');
+        const hitungan = document.getElementById('hitungan');
+
+        tambah.addEventListener('click', function() {
+            
+            if (typeof(Storage) !== "undefined") {
+                if (sessionStorage.getItem('hitungan') === null) {
+                    sessionStorage.setItem('hitungan', 1);
+                    hitungan.innerHTML = sessionStorage.getItem('hitungan')
+                } else {
+                    let hitunganBaru = parseInt(sessionStorage.getItem('hitungan')) + 1;
+                    sessionStorage.setItem('hitungan', hitunganBaru);
+                    hitungan.innerHTML = sessionStorage.getItem('hitungan')
+                }
+            } else {
+                alert('browser kamu tidak mendukung local storage');
+            }
+        });
+
+        hapus.addEventListener('click', function() {
+            if (typeof(Storage) !== "undefined") {
+                sessionStorage.removeItem('hitungan');
+                hitungan.innerHTML = sessionStorage.getItem('hitungan') || 0;
+            } else { 
+                alert('browser kamu tidak mendukung local storage');
+            }
+        });
+
+        if (typeof(Storage) !== "undefined") {
+            if (sessionStorage.getItem('hitungan') === null) {
+                hitungan.innerHTML = 0;
+            } else {
+                hitungan.innerHTML = sessionStorage.getItem('hitungan');
+                
+            }
+        }
+        
+    </script>
+</body>
+</html>

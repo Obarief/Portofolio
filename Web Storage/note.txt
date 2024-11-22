@@ -1,0 +1,20 @@
+seperti data pribadi pengaturan tema, setting dll akan disimpan di web storage agar waktunya tidak lama
+
+jika dalam web storage tidak ada maka dia akan dialihkan ke server
+
+- local storage
+- session storage
+
+cara ceknya : "typeof(storage)" -> function = maka berhasil
+
+terdiri dari key dan value = seperti loker penyimpanan
+
+yang disimpan berupa tipe data primitif :
+- string
+- boolean
+- number
+- bisa juga untuk JSON = namun saat ingin digunakan dirubah lagi menjadi primitif
+
+*local storage = tidak akan terhapus bila kita menutup, namun akan terhapus bila kita sendiri yang menghapusnya
+
+*session storage = akan hilang bila web ditutup

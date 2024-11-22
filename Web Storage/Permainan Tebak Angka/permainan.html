@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tebak Angka</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2 class="judul">Permainan Tebak Angka '123'</h2>
+    <br>
+    <div class="container">
+        
+        <div class="layer1">
+
+            <div class="board1">
+                <h3 class="judulB1">Game Board</h3>
+                    <br>
+                <p id="pesan1">
+                    Tekan tombol "Bermain" di bawah jika sudah siap
+                </p>
+                <button id="bermain">
+                    Bermain
+                </button>
+            </div>
+
+            <div class="board2">
+                <h3 class="judulB2">Local Stats</h3>
+                    <br>
+                    <p id="pesan2">
+                        Jumlah kombinasi yang berhasil ditebak: <span id="hitunganTebakan">0</span>
+                    </p>
+                    <br>
+                    <p id="pesan3">
+                        Jumlah tebakan salah terbanyak sekali main: <span id="hitunganSalahTerbanyak">0</span>
+                    </p>
+                    <button id="hapus">
+                        Hapus semua
+                    </button>
+            </div>
+        </div>
+        <div class="layer2">
+
+            <div class="board3">
+                <h3 class="judulB3">Game Session Stats</h3>
+                    <br>
+                <p id="pesan4">
+                    Jumlah tebakan salah: <span id="hitunganSalahSession">0</span>
+                </p>
+            </div>
+
+            <div class="board4">
+                <h3 class="judulB4">Cara Bermain</h3>
+                    <br>
+                <p id="pesan5">
+                    <h3>Selamat datang ke permainan tebak angka, berikut instruksinya: </h3>
+                    <br>
+                    <ul>
+                        <li>Anda harus mencari kombinasi angka yang terdiri dari angka "1", "2", dan "3", misalnya "231" dan "123".</li>
+
+                        <li>Angka yang ditebak hanya memiliki panjang 3 karakter saja, sehingga kombinasi seperti "1231" tidak akan menjadi jawaban.</li>
+
+                        <li>Sebuah angka hanya akan muncul sekali dan hanya sekali, sehingga kombinasi seperti "223" maupun "111" tidak akan menjadi jawaban.</li>
+                    </ol>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
