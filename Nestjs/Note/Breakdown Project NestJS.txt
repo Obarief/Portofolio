@@ -1,0 +1,41 @@
+-- Active: 1723826825364@@127.0.0.1@3306
+-Install library : {
+    zod = validation
+    winston = logger
+    bcrypt = hashing password
+    @types/bcrypt = untuk typescript
+    uuid = untuk membuat token
+    @types/uuid = untuk typescript
+}
+
+-API SPEC : {
+        user.md,
+        contact.md,
+        address.md
+    }
+
+-setup database : {
+    C:\Program Files\MySQL\MySQL Server 9.1\bin
+    mysql -u root -p
+
+    create database [nama database];
+    use [nama database];
+
+    npx prisma init
+    buat skema database user dll
+
+    buat tabel dari user dll
+
+    1 user punya banyak kontak (one to many)
+    dll
+
+    npx prisma generate = untuk menjalankan prismanya 
+
+    hapus file yg tidak diperlukan (sisakan [main.ts, app.module.ts])
+    app.module.ts = hapus semua library dan isi []
+
+    nest generate module common = untuk menyimpan module seperti prisma, logging, dll
+
+    (sudah membuat databasenya) lanjut... 
+
+}

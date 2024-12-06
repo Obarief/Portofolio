@@ -1,0 +1,52 @@
+nestjs adalah fromework berbasis ts namun bisa juga menggunakan js
+____________________________________________________________________________________________________
+nestjs menggunakan expressjs untuk http handlenya
+- // - jest untuk unit test
+- // - dapat diintegrasikan dengan prisma untuk databasenya
+- // - untuk logging dapat menggunakan winston
+____________________________________________________________________________________________________
+untuk setup nestjs menyediakan layanan CLI : npm install -g @nestjs/cli
+____________________________________________________________________________________________________
+struktur folder = 
+src = aplikasi dan unit test
+test = integration testing
+____________________________________________________________________________________________________
+instruksinya ada pada readme.md
+____________________________________________________________________________________________________
+{@} Decorator = digunakan untuk menambahkan fungsi atau perilaku tanpa melakukan perubahan pada sebuah fungsi, seperti menambah stiker disebuah kotak
+
+app module = sebagai module utamanya yang menerima banyak module" seperti user, order dll
+____________________________________________________________________________________________________
+
+controller = pelayan = @Controller = HTTP Method
+service = dapur = @Injectable = fetch api/ database
+module = manager = @Module = pengelompokkan module [import = module lain selain service dan controller, controller = controller, provider = service]
+____________________________________________________________________________________________________
+
+http request = tidak perlu menggunakan @Req -> request.params.id
+    direkomendasikan menggunakan yg disediakan oleh nestjs = @Query, @Param, dl;
+____________________________________________________________________________________________________
+
+http response = tidak perlu menggunakan @Res, pakai saja yang sudah ada dari nestjs yaitu @Header, @HttpCode, dll
+
+____________________________________________________________________________________________________
+
+asynchronus = async pada function lalu await pada saat pemanggilan data dari server atau database
+dan jika membuat untuk return valuenya menggunakan Promise sebagai tanda bahwa akan menghasilkan request terpenuhi atau tidak
+
+____________________________________________________________________________________________________
+
+usahakan dalam pemanggilan misal @Get(/sapa) itu mendahului @Get(), karena @Get() bentuknya umum sehingga di dahulukan
+
+____________________________________________________________________________________________________
+
+cookie = menggunakan cookie parser karena nestjs tidak ada untuk penanganan cookie
+
+____________________________________________________________________________________________________
+
+view = nestjs tidak memilikinya sehingga harus menggunakan template engine yang bisa diintegrasikan ke expressjs yaitu mustache
+
+NestExpressApplication = pada main.ts gunakan ini untuk mengatur bahwa kita memakai expressjs
+
+set view engine
+____________________________________________________________________________________________________
