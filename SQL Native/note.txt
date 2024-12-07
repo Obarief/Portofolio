@@ -1,0 +1,139 @@
+*download mysql
+
+*masukan env binnya
+
+*jalankan cmd
+
+*Command {
+
+(;) -> penting untuk penutup command apapun
+
+DDL = data definition language
+
+*membuat database
+-create database nama_database;
+
+
+# ALTER
+*membuat table dalam database
+-create table nama_table (nim int(10), nama varchar(100));
+
+*menambah, menghapus, merubah kolom
+-alter table nama_table add primary key (nim);
+
+*modifikasi isi byte data
+-alter table nama_table modify column nama varchar(200)
+
+*menghapus column
+-alter table mahasiswa drop nama
+
+
+# TRUNCATE
+*menghapus semua record di database
+-truncate table nama_table
+
+# DROP
+*menghapus table dan database
+-drop table nama_table
+-drop database nama_database
+
+# RENAME
+*merubah nama table
+-rename table nama_lama to nama_baru
+
+DML = data manipulation language
+
+# INSERT
+*memberikan value dari variabel yg ada
+-insert into nama_table (nim, nama, prodi) values (214414, "okta", "TI")
+
+# UPATE
+*merubah value
+-update nama_table set nama_kolom = 'isi_baru' where nama_kolom_pembeda
+
+# DELETE
+*menghapus value seluruhnya dengan nama_kolom_pembeda
+-delete from nama_table where nama_kolom_pembeda
+
+DCL = data control language
+
+*membuat user jika diperlukan (study purpose)
+-create user 'nama_user'@'localhost' indentified by 'password';
+
+# GRANT
+*memberikan hak akses select dan insert saja
+-grant select, insert on nama_database.nama_table to 'user1'@'localhost';
+
+*memberikan semua metode DDL dan DML untuk semua database dan semua tabel untuk user dicodong
+-grant all privileges on *.* to 'dicodong'@'localhost';
+
+# REVOKE
+*menghapus hak akses
+
+*menghapus 1 permission yaitu insert
+-revoke insert on *.* from 'dicodong'@'localhost';
+
+*menghapus semua permission 
+-revoke all on *.* from 'dicodong'@'localhost'; 
+
+DQL = data query language
+
+# SELECT
+*melihat value
+-select * from nama_table
+
+# + DISTINCT
+*hanya melihat value dari nama_kolom
+select distinct nama_kolom from nama_table
+
+# + WHERE
+*menyaring dari ...
+select * from nama_tabel where nama_kolom = 'value'
+
+# + ORDER BY
+*mengurutkan data berdasarkan kolom nim (ASC = naik, DESC = menurun)
+select * from nama_tabel order by nim ASC
+
+# + GROUP BY
+*pilih nama yang memiliki semua(n) dari tabel .... filter berdasarkan ....
+-select nama_kolom_parameter, count(*) from nama_table group by nama_kolom_yg_difilter
+ 
+# + GROUP BY + HAVING
+*pilih nama yang memiliki jumalh(n) dari tabel .... filter berdasarkan .... yang memiliki jumlah lebih dari 2
+-select nama, count(*) from mahasiswi group by nim having count(*) > 2;
+
+# + LIMIT
+*membatasi jumlah hasil yang ditampilkan
+-select * from nama_tabel limit (n)
+
+# + INNER JOIN
+*menggabungkan beberapa tabel berdasarkan hubungan kolom
+-
+
+# + UNION
+*menggabungkan query menjadi 1 prompt
+-select nama_kolom1 from nama_tabel1 union select nama_kolom1 from nama_tabel2
+
+# AGGREGATION = count, min, max, avg, sum
+*filter untuk value number 
+-select sum(nama_kolom) from nama_tabel
+-select count(*) from nama_tabel
+-select nama_kolom1, min(nama_kolom2) from nama_tabel
+
+TCL = transaction control language
+
+# START TRANSACTION
+*memulai record perubahan
+
+# COMMIT
+*menyimpan perubahan
+
+# ROLLBACK
+*kembali ke n-1 perubahan
+
+
+## JOIN = antar tabel
+
+
+
+}
