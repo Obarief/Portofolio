@@ -1,0 +1,76 @@
+-apakah tidak cukup pakai html dan css ? "agar ada standarisasi dalam 1 tim"
+-komponen = kumpulan html elemen, koda js dan css = kode yg bisa digunakan secara independen = reusable = jsx (javascript xml) = 
+
+?{
+        export default function HelloWorld(){
+        return(
+            <>
+                <h1>halo dunia</h1>
+            </>
+        )
+        }
+}penjelasan = 1 komponen bernama HelloWorld dan mengembalikan xml dengan menggunakan fragment dan di export
+
+?{
+        import {React, StrictMode} from 'react';
+        import {createRoot} from 'react-dom/client';
+        import HelloWorld from './HelloWorld.jsx';
+
+        createRoot(document.getElementById('root')).render(
+                <StrictMode>
+                    <HelloWorld/>
+                    <HelloWorld/>
+                </StrictMode>
+            )
+}membuat render ke html menggunakan DOM , bisa digunakan berulang
+
+?{
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Hello React</title>
+        </head>
+        <body>
+            <div id="root"></div>
+            <script type="module" src="./src/hello-world/main.jsx"></script>
+        </body>
+        </html>
+
+}file htmlnya yang menjadi template filenya 
+
+- 1 komponen 1 file = best practice
+- multiple komponen dalam 1 file = bisa saja
+- komponen  = function yang mengembalikan react elemen
+
+=======================================================
+
+*JSX = aturannya lebih ketat daripada html, beberapa element berberda dari html
+    -aturan : 
+        -hanya boleh mengembalikan 1 element
+        -menutup tag element
+        -camelCase
+
+    -gunakan converter bisa ingin dari html ke jsx = jsx converter
+
+*javascript di jsx = gunakan kurung kurawal = <h1>{text.toUpperCase()}</h1>
+    -sebagai atribut juga bisa = <img src={path}/>
+    -js object menggunakan kurung kurawal double
+        -contoh: <h1 style={{color=red}}>{text.toUpperCase()}<h1/>
+            {} 1 = sebagai object
+            {} 2 = sebagai isi dari objectnya yang berupa js
+
+=======================================================
+
+*props = untuk berkomunikasi, bisa mengirim array, function dll
+    -untuk menambahkan props = tambahkan 1 parameter = bentuknya object
+    -tambahkan atribut pada import function sesuai dengan atribut yang dibuat sebelumnya 
+
+=======================================================
+
+*spread atribut = untuk mengeluarkan semua atribut yang dimiliki oleh suatu variabel, jika ingin di keluarkan semuanya namun tidak ingin 1 per 1 (contoh = props.text, props.number) = bisa dengan {...props}
+
+=======================================================
+
+nested component = membuat callback dengan children = dan harus children
