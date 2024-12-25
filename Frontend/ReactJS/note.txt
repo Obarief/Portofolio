@@ -74,3 +74,106 @@
 =======================================================
 
 nested component = membuat callback dengan children = dan harus children
+
+=======================================================
+
+
+style = import css
+
+=======================================================
+
+conditional = jika ada yang terdelete maka kembalikan null, jika ada dan sudah dipelajari coret, jika belum kembalikan teks asalnya
+
+biasanya menggunakan logika AND {isComplete && '✅'}
+
+=======================================================
+
+collection component = (membutuhkan unique key props) sebagai pembeda dari data yang lain untuk react mengetahui ketika ada perubahan pada suatu props pada salah 1 datanya dalam props
+
+
+=======================================================
+BEST PRACTICE
+
+pure component = sama seperti pure function
+    terdapat 2 kriteria yaitu:
+        -mengembalikan nilai sama untuk parameter yang sama
+        -tidak memiliki efek samping ke variabel non local (artinya tetap pada scope function saja)
+
+jika kita membuat counter yang tidak pure maka akan menunjukkan angka kelipatan 2 karena fitur dari <StrictMode> = yaitu merender 2x sehingga counter menjadi kelipatan 2.
+
+solusinya adalah counter/id menjadi di parameter di samping text (memberi nilai absolut menjadi string di pemakaiannya)
+
+jika ingin tetap ada efek samping maka ada fungsi namanya event handler -->
+
+=======================================================
+
+event handler = membuat custom event handler
+    props sebuah object
+        event handler bisa menjadi props, karena props bisa berisi object 
+
+=======================================================
+
+event object = event object dari apa yang kita click (fungsi maupun elemen)
+
+=======================================================
+
+event propagation = seperti penyebaran, jika kita stopPropagation maka child event tidak akan menyebar ke event parent
+
+event propagation = jika fungsi yang digunakan sama seperti parentnnya, namun tidak ingin parentnya kena eventnya jika child di event, maka gunakan event.stopPropagation(), agar hanya menghandle (button) yang di klik pada childnya 
+
+<div onClick={onClick}>
+            <button onClick={onClick}>First</button>
+            <button onClick={onClick}>Second</button>
+</div>
+
+*penjelasan = div memiliki onClick dan button juga memiliki onClick, jika kita tidak pakai event.stopPropagation(); maka handler akan mengeksekusi 2x yaitu tombol pada child yang kita klik dan "event tombol" pada parent divnya 
+
+karena sebenarnya jika kita klik divnya walau tidak ada button maka akan ter handle juga 
+
+sama seperti event prevent default pada js = sebagai rem bagi form untuk tidak melakukan event built-in yang ada, agar ketika di submit tidak refresh halaman dan dapat kita cek dahulu datanya
+
+=======================================================
+
+side effect = mengubah elemen di luar function
+
+DOM tidak direkomendasikan karena percuma memakai react
+
+
+maka gunakan state -->
+
+=======================================================
+
+Hooks = fitur yang dapat digunakan didalam react
+
+=======================================================
+
+state = mirip variabel namun dapat dirender ulang
+
+kalau variabel biasa maka perlu tahap yang panjang dengan DOM
+
+useState = megembalikan 2 nilai yaitu state dan setstate 
+
+counter = angka yang tersimpan
+setcounter = untuk memberi tahu react bahwa ada perubahan pada counter
+
+counter bersifat private dan terisolasi = sehingga ketika kita memanggil lagi counternya maka itu terpisah mempunyai perhitungannya sendiri"
+
+=======================================================
+
+render = memanggil component yang dibuat
+    1. memicu proses render
+    2. melakukan proses render
+    3. menempatkan hasil render ke DOM
+
+        memicu =
+            1. inisialisasi awal pada root DOM
+            2. ketika ada perubahan
+           
+        render = 
+            1. pada inisialisasi awal pada root
+            2. memberi perubahan pada state yang berubah
+            3. render selesai maka react melakukan commit
+
+        commit = 
+            1. proses pertama saja = akan appenChild() untuk DOMnya 
+            2. untuk render ulang menyamakan DOM dengan hasil rendering = itulah penyebab react dapat membedakan component mana yang berubah walau componentnya sama

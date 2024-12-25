@@ -1,3 +1,6 @@
+import './HelloWorld.css'
+
+
 export default function HelloWorld(){
     const props = {
         deskripsi: "lorem lorem lorem lorem ipsum dolor sit amet"
@@ -29,13 +32,10 @@ function HeaderHelloWorld({text = "default value"}){
 function ParaghrafHelloWorld({deskripsi = "deskripsi default"}){
     const text = "halo Oktavari Budi Arief"
     // const deskripsi = "halo halo bandung"
-    const style = {
-        color: "green",
-        backgroundColor: "black"
-    }
+    
     return (
         <>
-            <p>{deskripsi} <b style={style}>{text.toLowerCase()}</b></p>
+            <p className='content'>{deskripsi} <b>{text.toLowerCase()}</b></p>
             
         </>
     )

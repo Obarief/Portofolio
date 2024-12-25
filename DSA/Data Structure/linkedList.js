@@ -1,85 +1,86 @@
-class Node { // inisialisasikan kotaknya
+class Node { // Inisialisasi node sebagai kotak penyimpanan
     constructor(value) {
-        this.value = value
-        this.next = null
+        this.value = value; // Data node
+        this.next = null;   // Referensi ke node berikutnya
     }
 }
 
-class LinkedList { // membuat kumpulan/urutan datanya
+class LinkedList { // Membuat kumpulan/urutan data
     constructor() {
-        this.head = null // nilai awal head tidak ada
+        this.head = null; // Node pertama (head) awalnya kosong
     }
 
     addProduct(product) {
-        const newNode = new Node(product); // menggunakan template Node
+        const newNode = new Node(product); // Membuat node baru dari data produk
         if (!this.head) {
-            this.head = newNode; // jika tidak ada headnya maka head tetap menjadi newNode
+            this.head = newNode; // Jika belum ada node, jadikan sebagai head
         } else {
             let current = this.head;
-            while (current.next) {
-                current = current.next // data sekarang menjadi ada pointer ke data berikutnya
+            while (current.next) { // Menelusuri node sampai yang terakhir
+                current = current.next;
             }
-            current.next = newNode; // pointernya menjadi sebuah node baru yang memiliki produk
+            current.next = newNode; // Tambahkan node baru di akhir
         }
     }
 
     removeProduct(productName) {
-        if (!this.head) { // jika head tidak ada maka kosong
+        if (!this.head) { // Jika tidak ada head, berarti linked list kosong
             console.log("Keranjang Kosong");
             return;
         } 
 
-        // untuk menghapus head
-        if (this.head.data.name === productName) { // jika data head namanya sama seperti produk
-            this.head = this.head.next; // data head menjadi pointer 
+        // Menghapus node pertama (head)
+        if (this.head.value.name === productName) { // Jika nama produk di head cocok
+            this.head = this.head.next; // Head digantikan oleh node berikutnya
             return;
         }
 
-        // untuk menghapus data selanjutnya selain head
+        // Menghapus node selain head
         let current = this.head;
-        while(current.next && current.next.data.name !== productName) { // jika pointer dan nama data setelahnya tidak sama dengan nama produk
-            current = current.next // maka data sekarang menjadi pointer
+        while (current.next && current.next.value.name !== productName) { // Cari node dengan nama produk
+            current = current.next;
         }
 
         if (current.next) {
-            current.next = current.next.next // jika data selanjutnya ada maka ganti menjadi data setelah selanjutnya
+            current.next = current.next.next; // Lewati node yang akan dihapus
         } else {
-            console.log("produk tidak ditemukan!")
+            console.log("Produk tidak ditemukan!");
         }
     }
 
     displayProduct() {
         if (!this.head) {
-            console.log("keranjang kosong!");
+            console.log("Keranjang kosong!");
             return;
         }
-        let current = this.head
-        while (current) {// data saat ini
-            console.log(`${current.data.name} - $${current.data.price}`); // tampilkan nama data dan harga datanya
-            current = current.next; // data saat ini menjadi data (pointer) selanjutnya 
+        let current = this.head;
+        while (current) { // Menelusuri setiap node
+            console.log(`${current.value.name} - Rp${current.value.price}`); // Tampilkan nama dan harga
+            current = current.next; // Pindah ke node berikutnya
         }
     }
-
 }
 
-const cart = new LinkedList(); // inisialisasi bahwa cart itu mengadopsi fungsi yang ada didalam LinkedList()
+// Contoh penggunaan
+const cart = new LinkedList();
 
-// memasukkan data dengan object, pasangan (key, value)
-cart.addProduct({name: 'laptop', price: 33000000})
-cart.addProduct({name: 'handphone', price: 2000000})
-cart.addProduct({name: 'Televisi', price: 50000000})
+// Menambahkan produk
+cart.addProduct({name: 'Laptop', price: 33000000});
+cart.addProduct({name: 'Handphone', price: 2000000});
+cart.addProduct({name: 'Televisi', price: 50000000});
 
-// menampilkan produk
-console.log("produk dalam keranjang")
+// Menampilkan produk
+console.log("Produk dalam keranjang:");
 cart.displayProduct();
 
-// menghapus produk dari namanya 
-console.log("menghapus handphone");
-cart.removeProduct('handphone')
+// Menghapus produk
+console.log("Menghapus Handphone:");
+cart.removeProduct('Handphone');
 
-// melihat produk setelah dihapus
-console.log("produk dalam keranjang setelah dihapus");
+// Menampilkan produk setelah penghapusan
+console.log("Produk dalam keranjang setelah dihapus:");
 cart.displayProduct();
+
 
 
 
