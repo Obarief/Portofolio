@@ -1,3 +1,14 @@
+PENTING {
+    # START TRANSACTION
+    *memulai record perubahan
+
+    # COMMIT
+    *menyimpan perubahan
+
+    # ROLLBACK
+    *kembali ke n-1 perubahan
+}
+
 *download mysql
 
 *masukan env binnya
@@ -108,7 +119,13 @@ select * from nama_tabel order by nim ASC
 
 # + INNER JOIN
 *menggabungkan beberapa tabel berdasarkan hubungan kolom
--
+- select orders.order_id, orders.amount, customers.first_name from orders inner join customers on orders.customer = customers.customer_id;
+    ?{
+        select = tampilkan order id, amount, nama customer
+        from = dari tabel orders
+        inner join = terhadap tabel customers
+        on = dengan kondisi customer pada tabel orders sama dengan customer id pada tabel costumer
+    }
 
 # + UNION
 *menggabungkan query menjadi 1 prompt
@@ -122,18 +139,60 @@ select * from nama_tabel order by nim ASC
 
 TCL = transaction control language
 
-# START TRANSACTION
-*memulai record perubahan
+PRIMARY KEY = valuenya unik = awal (id int not null primary key), akhir (primary key (id))
 
-# COMMIT
-*menyimpan perubahan
-
-# ROLLBACK
-*kembali ke n-1 perubahan
-
+FOREIGN KEY = valuenya bisa sama = akhir (foreign key (personId) references person(personId))
 
 ## JOIN = antar tabel
+*INNER JOIN = union = hanya pada value yang sama saja yang di cocokan
+*OUTER JOIN =  hanya pada value yang berbeda saja yang di cocokan
+*LEFT JOIN =  semua yang ada di tabel kiri dan jika tidak cocok di tabel kanan maka bernilai null
+*RIGHT JOIN =  semua yang ada di tabel kanan dan jika tidak cocok di tabel kiri maka bernilai null
+
+UC = unique constraits
+*contoh penggunaan = 
+create table person (
+
+        id int not null,
+        namaDepan varchar(255),
+        namaBelakang varchar(255),
+        age int
+        
+        constraint UC_person unique (id, namaBelakang)
+    );
+
+    artinya id dan namabelakang tidak boleh sama
+
+*CHECK = untuk memastikan bahwa valuenya hanya yg telah di tentukan
+{
+    create table person (id int PRIMARY KEY, 
+    nama varchar(255), 
+    gender char(1) 
+    check(gender in ('M', 'F')));
+} = hanya menerima M dan F
+
+*DEFAULT = memberikan nilai default jika kosong
+{
+    create table orang (id int primary key, 
+    nama varchar(255), 
+    city varchar(100) 
+    default 'Jakarta');
+} = memberikan nilai default jakarta
+
+*CREATE INDEX = jika sering mengakses suatu kolom, maka ini diberi INDEX
+{
+    create index nama_index on nama_tabel (kolom)
+} = pemanggilan hampir sama, namun sistem akan langsung mencocokan dengan index yang sama, menjadi direct access
 
 
+*VIEW = seperti membuat variabel dengan value query yang panjang, sehingga mudah di maintain, aman karena dapat memberikan akses ke view saja bukan tabel asli, clean query
 
+    *kekurangan
+-performanya lambat
+-tidak dapat di index
+-sulit melakukan operasi DML
+
+Contoh: {
+    create view asal as select country from person where id=2;
+} = buat view bernama asal dari query select ...
 }
