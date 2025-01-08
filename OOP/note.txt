@@ -1,0 +1,43 @@
+-object berisi properti dan method
+    properti adalah pasangan key dan value, namun valuenya berupa tipe data primitif
+    method adalah pasangan key dan value, namun valuenya berupa function atau object
+
+-function constructor sama seperti function biasa namun penulisan nama variabelnya huruf besar alias kapital
+
+-class pada javascript sama seperti function namun cara penulisannya saja yang berbeda, namun untuk inisialisasi nama variabelnya menggunakan huruf kapital
+
+-instance adalah objek baru yang dihasilkan dari constructor
+
+-this mengacu pada objek instannya bisa yang diletakkan di objek, bila diletakkan di function maka dia menjadi global objek/window
+
+-private = hanya bisa digunakan dalam scope functionnya (lokal scope)
+    var = local scope
+
+-public = bisa digunakan diluar scopenya (global scope)
+    this = global scope
+
+untuk mengubah private menjadi public{
+    function baru namun dengan this dan mengembalikan function yang private
+}penjelasannya = this adalah global scope
+
+
+4 pilar OOP =
+    *encapsulation(menjaga) = 
+        -mengamankan properti dan method, sehingga tidak dapat diakses langsung (dengan menginisialisasikan var lalu membuat function baru dengan this)
+        -method dan properti suatu objek tidak boleh langsung diekspos
+        -lebih baik pakai (#pajak) untuk nilai private dari pada (var pajak = pajak)
+
+    -inheritance(mewarisi) =
+        -membuat kelas turunan namun ada properti/method dari parentnya dan ditambahkan dengan properti/method punya anak itu sendiri
+        -menggunakan keyword super() sebagai kunci akses dan memanggil fungsi parentnya
+        -penempatan super berada paling utama sebelum this, karena this bergantung pada kelas induk
+
+    -polymorphism(variasi) = 
+        -poly berarti banyak
+        -morphe berarti bentuk
+        -kemampuan untuk membuat variabel,fungsi, atau objek yang memiliki banyak bentuk
+        -jika di class child tidak ada maka program akan mencarinya di class parentnya
+
+    -abstraction(back story) =
+        -menyembbunyikan detail tertentu dari sebuah objek dan hanya menampilkan fungsionalitasnya atau fitur pentingnya saja
+        -pengendara motor hanya perlu tau cara menghidupkan motor dan mengendarai motor tidak perlu tau cara bagaimana mesin bekerja dan cara pembuatan motor
